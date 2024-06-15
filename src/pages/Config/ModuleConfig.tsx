@@ -33,6 +33,10 @@ export const ModuleConfig = (): JSX.Element => {
       element: ExternalNotification,
     },
     {
+      label: "Ringtone (RTTTL)",
+      element: RTTTL,
+    },
+    {
       label: "S&F",
       element: StoreForward,
     },
@@ -51,10 +55,6 @@ export const ModuleConfig = (): JSX.Element => {
     {
       label: "Audio",
       element: Audio,
-    },
-    {
-      label: "Ringtone (RTTTL)",
-      element: RTTTL,
     },
     {
       label: "Neighbor Info",

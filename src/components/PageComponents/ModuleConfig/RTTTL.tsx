@@ -15,7 +15,6 @@ export const RTTTL = (): JSX.Element => {
     //     },
     //   }),
     // );
-    nodes?.
   };
 
   return (
@@ -24,37 +23,15 @@ export const RTTTL = (): JSX.Element => {
       defaultValues={moduleConfig.rangeTest}
       fieldGroups={[
         {
-          label: "Range Test Settings",
-          description: "Settings for the Range Test module",
+          label: "Ringtone (RTTTL) Settings",
+          description: "Settings for Ring Tone Text Transfer Language (RTTTL)",
           fields: [
             {
-              type: "toggle",
+              type: "text",
               name: "enabled",
-              label: "Module Enabled",
-              description: "Enable Range Test",
-            },
-            {
-              type: "number",
-              name: "sender",
-              label: "Message Interval",
-              description: "How long to wait between sending test packets",
-              disabledBy: [
-                {
-                  fieldName: "enabled",
-                },
-              ],
-            },
-            {
-              type: "toggle",
-              name: "save",
-              label: "Save CSV to storage",
-              description: "ESP32 Only",
-              disabledBy: [
-                {
-                  fieldName: "enabled",
-                },
-              ],
-            },
+              label: "Ringtone",
+              description: "String used by supported buzzer in external notifications.",
+            }
           ],
         },
       ]}

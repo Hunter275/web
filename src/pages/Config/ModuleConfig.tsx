@@ -10,6 +10,7 @@ import { Serial } from "@components/PageComponents/ModuleConfig/Serial.js";
 import { StoreForward } from "@components/PageComponents/ModuleConfig/StoreForward.js";
 import { Telemetry } from "@components/PageComponents/ModuleConfig/Telemetry.js";
 import { Paxcounter } from "@components/PageComponents/ModuleConfig/Paxcounter.js";
+import { RTTTL } from "@components/PageComponents/ModuleConfig/RTTTL.js";
 import {
   Tabs,
   TabsContent,
@@ -50,6 +51,10 @@ export const ModuleConfig = (): JSX.Element => {
     {
       label: "Audio",
       element: Audio,
+    },
+    {
+      label: "Ringtone (RTTTL)",
+      element: RTTTL,
     },
     {
       label: "Neighbor Info",

@@ -1,12 +1,13 @@
 import type { PositionValidation } from "@app/validation/config/position.js";
 import { DynamicForm } from "@components/Form/DynamicForm.js";
-import { useDevice } from "@core/stores/deviceStore.js";
-import { Protobuf } from "@meshtastic/js";
+import { Device, useDevice } from "@core/stores/deviceStore.js";
+import { Protobuf, Types } from "@meshtastic/js";
 
-export const Position = (): JSX.Element => {
-  const { config, nodes, hardware, setWorkingConfig } = useDevice();
+export const Position = (device: Device): JSX.Element => {
+  const { config, nodes, hardware, setWorkingConfig, addPosition } = useDevice();
 
   const onSubmit = (data: PositionValidation) => {
+    device.addPosition(new Types.PacketMetadata<Protobuf.Mesh.Position>);
     setWorkingConfig(
       new Protobuf.Config.Config({
         payloadVariant: {
@@ -47,6 +48,27 @@ export const Position = (): JSX.Element => {
               type: "toggle",
               name: "fixedPosition",
               label: "Fixed Position",
+              description:
+                "Don't report GPS position, but a manually-specified one",
+            },
+            {
+              type: "text",
+              name: "fixedPosition",
+              label: "Longitude",
+              description:
+                "Don't report GPS position, but a manually-specified one",
+            },
+            {
+              type: "text",
+              name: "fixedPosition",
+              label: "Latitude",
+              description:
+                "Don't report GPS position, but a manually-specified one",
+            },
+            {
+              type: "text",
+              name: "fixedPosition",
+              label: "Altitude",
               description:
                 "Don't report GPS position, but a manually-specified one",
             },

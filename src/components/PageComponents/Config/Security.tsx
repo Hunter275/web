@@ -49,6 +49,11 @@ export const Security = (): JSX.Element => {
         {
           label: "Security Settings",
           description: "Settings for the Security configuration",
+          fields: [],
+        },
+        {
+          label: "Encryption Keys",
+          description: "Settings for public key encryption",
           fields: [
             {
               type: privateKeyVisible ? "text" : "password",
@@ -68,6 +73,7 @@ export const Security = (): JSX.Element => {
                 },
               },
             },
+            
             {
               type: "text",
               name: "publicKey",
@@ -79,15 +85,15 @@ export const Security = (): JSX.Element => {
           ],
         },
         {
-          label: "Admin Settings",
-          description: "Settings for Admin ",
+          label: "Remote Node Admin Settings",
+          description: "Settings for Remote Administration",
           fields: [
             {
               type: "toggle",
               name: "adminChannelEnabled",
               label: "Allow Legacy Admin",
               description:
-                "Allow incoming device control over the insecure legacy admin channel",
+                "Allow incoming device control using PSKs (less secure)",
             },
             {
               type: "toggle",

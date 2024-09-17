@@ -113,12 +113,12 @@ export const Channel = ({ channel }: SettingsPanelProps): JSX.Element => {
               label: "Role",
               disabled: channel.index === 0,
               description:
-                "Device telemetry is sent over PRIMARY. Only one PRIMARY allowed",
+                "Device telemetry is sent over PRIMARY.",
               properties: {
                 enumValue:
                   channel.index === 0
-                    ? { PRIMARY: 1 }
-                    : { DISABLED: 0, SECONDARY: 2 },
+                    ? { PRIMARY: Protobuf.Channel.Channel_Role.PRIMARY }
+                    : { DISABLED: Protobuf.Channel.Channel_Role.DISABLED, SECONDARY: Protobuf.Channel.Channel_Role.SECONDARY },
               },
             },
             {

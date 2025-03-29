@@ -65,8 +65,8 @@ describe("TraceRoute", () => {
 
     expect(screen.getByText("Route back:")).toBeInTheDocument();
     expect(screen.getByText("Node C")).toBeInTheDocument();
-    expect(screen.getByText("↓ 35dB")).toBeInTheDocument();
-    expect(screen.getByText("↓ 45dB")).toBeInTheDocument();
+    expect(screen.getByText("↓ 17.5dB")).toBeInTheDocument();
+    expect(screen.getByText("↓ 22.5dB")).toBeInTheDocument();
   });
 
   it("renders '??' for missing SNR values", () => {

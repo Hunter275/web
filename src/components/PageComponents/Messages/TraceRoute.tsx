@@ -26,11 +26,11 @@ const RoutePath = ({ title, startNode, endNode, path, snr }: RoutePathProps) => 
     <span className="ml-4 border-l-2 border-l-background-primary pl-2 text-slate-900 dark:text-slate-900">
       <p className="font-semibold">{title}</p>
       <p>{startNode?.user?.longName}</p>
-      <p>↓ {snr?.[0] ?? "??"}dB</p>
+      <p>↓ {snr?.[0] ? [snr?.[0] / 4]: "??"}dB</p>
       {path.map((hop, i) => (
         <span key={nodes.get(hop)?.num ?? hop}>
           <p>{nodes.get(hop)?.user?.longName ?? `!${numberToHexUnpadded(hop)}`}</p>
-          <p>↓ {snr?.[i + 1] ?? "??"}dB</p>
+          <p>↓ {snr?.[i + 1] ? [snr?.[i + 1] / 4] : "??"}dB</p>
         </span>
       ))}
       <p>{endNode?.user?.longName}</p>
@@ -53,7 +53,7 @@ export const TraceRoute = ({
         startNode={to}
         endNode={from}
         path={route}
-        snr={snrTowards}
+        snr={[snrTowards / 4]}
       />
       {routeBack && (
         <RoutePath
@@ -61,7 +61,7 @@ export const TraceRoute = ({
           startNode={from}
           endNode={to}
           path={routeBack}
-          snr={snrBack}
+          snr={[snrBack / 4]}
         />
       )}
     </div>

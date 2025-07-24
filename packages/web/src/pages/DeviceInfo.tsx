@@ -1,24 +1,13 @@
-import { FilterControl } from "@components/generic/Filter/FilterControl.tsx";
-import {
-  type FilterState,
-  useFilterNode,
-} from "@components/generic/Filter/useFilterNode.ts";
-import { BaseMap } from "@components/Map.tsx";
 import { PageLayout } from "@components/PageLayout.tsx";
 import { Sidebar } from "@components/Sidebar.tsx";
-import { useDevice } from "@core/stores/deviceStore.ts";
 import { cn } from "@core/utils/cn.ts";
-import type { Protobuf } from "@meshtastic/core";
-import { bbox, lineString } from "@turf/turf";
-import { CpuIcon, FunnelIcon, LucideIcon, MapPinIcon, ZapIcon } from "lucide-react";
-import { useCallback, useDeferredValue, useMemo, useState } from "react";
-import { Marker, Popup, useMap } from "react-map-gl/maplibre";
+import { CpuIcon, LucideIcon, ZapIcon } from "lucide-react";
 import { t } from "i18next";
 import BatteryStatus from "@app/components/BatteryStatus.tsx";
 import { DeviceMetrics } from "@app/components/types.ts";
 import { Subtle } from "@app/components/UI/Typography/Subtle.tsx";
 
-interface DeviceInfoPanelProps {
+interface DeviceInfoProps {
   isCollapsed: boolean;
   deviceMetrics: DeviceMetrics;
   firmwareVersion: string;
@@ -31,11 +20,10 @@ interface DeviceInfoPanelProps {
   disableHover?: boolean;
 }
 
-
 export const DeviceInfoPage = ({
   deviceMetrics,
   firmwareVersion,
-}: DeviceInfoPanelProps) => {
+}: DeviceInfoProps) => {
 
   interface InfoDisplayItem {
     id: string;
@@ -103,3 +91,5 @@ export const DeviceInfoPage = ({
     </PageLayout>
   );
 };
+
+export default DeviceInfoPage;

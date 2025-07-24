@@ -1,6 +1,7 @@
 import { cn } from "@core/utils/cn.ts";
 import {
   CpuIcon,
+  SmartphoneIcon,
   Languages,
   type LucideIcon,
   Palette,
@@ -18,6 +19,7 @@ import type { DeviceMetrics } from "./types.ts";
 import { Avatar } from "./UI/Avatar.tsx";
 import { Button } from "./UI/Button.tsx";
 import { Subtle } from "./UI/Typography/Subtle.tsx";
+import { useNavigate } from "@tanstack/react-router";
 
 interface DeviceInfoPanelProps {
   isCollapsed: boolean;
@@ -59,6 +61,7 @@ export const DeviceInfoPanel = ({
 }: DeviceInfoPanelProps) => {
   const { t } = useTranslation();
   const { batteryLevel, voltage } = deviceMetrics;
+  const navigate = useNavigate({ from: "/" });
 
   const deviceInfoItems: InfoDisplayItem[] = [
     {
@@ -96,6 +99,12 @@ export const DeviceInfoPanel = ({
       label: t("page.title", { ns: "commandPalette" }),
       icon: SearchIcon,
       onClick: setCommandPaletteOpen,
+    },
+    {
+      id: "deviceInfo",
+      label: t("sidebar.deviceInfo.title"),
+      icon: SmartphoneIcon,
+      onClick: () => {navigate({ to: `/deviceinfo` });}
     },
     {
       id: "theme",

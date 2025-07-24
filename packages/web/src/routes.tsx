@@ -2,6 +2,7 @@ import { DialogManager } from "@components/Dialog/DialogManager.tsx";
 import type { useAppStore } from "@core/stores/appStore.ts";
 import type { useMessageStore } from "@core/stores/messageStore/index.ts";
 import ChannelsPage from "@pages/Channels.tsx";
+import DeviceInfoPage from "@pages/DeviceInfo.tsx";
 import ConfigPage from "@pages/Config/index.tsx";
 import { Dashboard } from "@pages/Dashboard/index.tsx";
 import MapPage from "@pages/Map/index.tsx";
@@ -16,6 +17,8 @@ import {
 import type { useTranslation } from "react-i18next";
 import { z } from "zod/v4";
 import { App } from "./App.tsx";
+import { Device } from "./components/PageComponents/Config/Device/index.tsx";
+import { de } from "zod/v4/locales";
 
 interface AppContext {
   stores: {
@@ -76,6 +79,12 @@ const mapRoute = createRoute({
   component: MapPage,
 });
 
+const deviceInfoRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/deviceinfo",
+  component: DeviceInfoPage,
+});
+
 const configRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/config",
@@ -105,6 +114,7 @@ const routeTree = rootRoute.addChildren([
   messagesRoute,
   messagesWithParamsRoute,
   mapRoute,
+  deviceInfoRoute,
   configRoute,
   channelsRoute,
   nodesRoute,

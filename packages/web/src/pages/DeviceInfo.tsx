@@ -4,35 +4,29 @@ import { cn } from "@core/utils/cn.ts";
 import { CpuIcon, LucideIcon, ZapIcon } from "lucide-react";
 import { t } from "i18next";
 import BatteryStatus from "@app/components/BatteryStatus.tsx";
-import { DeviceMetrics } from "@app/components/types.ts";
+import type { DeviceMetrics } from "../components/types.ts";
 import { Subtle } from "@app/components/UI/Typography/Subtle.tsx";
+import { useDevice } from "@core/stores/deviceStore.ts";
 
-interface DeviceInfoProps {
-  isCollapsed: boolean;
-  deviceMetrics: DeviceMetrics;
-  firmwareVersion: string;
-  user: {
-    shortName: string;
-    longName: string;
-  };
-  setDialogOpen: () => void;
-  setCommandPaletteOpen: () => void;
-  disableHover?: boolean;
-}
-
-export const DeviceInfoPage = ({
-  deviceMetrics,
-  firmwareVersion,
-}: DeviceInfoProps) => {
-
-  interface InfoDisplayItem {
+interface InfoDisplayItem {
     id: string;
     label: string;
     icon?: LucideIcon;
     customComponent?: React.ReactNode;
     value?: string | number | null;
-  }
+}
 
+export const DeviceInfoPage = () => {
+  const { hardware, getNode, metadata } = useDevice();
+  const myNode = getNode(hardware.myNodeNum);
+  const myMetadata = metadata.get(0);
+  
+  const deviceMetrics: DeviceMetrics = {
+    batteryLevel: myNode?.deviceMetrics?.batteryLevel,
+    voltage: myNode?.deviceMetrics?.voltage,
+  };
+  
+  const firmwareVersion = myMetadata?.firmwareVersion ?? t("unknown.notAvailable", "N/A");
   const { batteryLevel, voltage } = deviceMetrics;
 
   const deviceInfoItems: InfoDisplayItem[] = [
@@ -64,7 +58,6 @@ export const DeviceInfoPage = ({
       <div
         className={cn(
           "flex flex-col gap-2 mt-1",
-          "transition-all duration-300 ease-in-out",
           "opacity-100 max-w-xs h-auto visible",
         )}
       >

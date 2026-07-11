@@ -31,7 +31,13 @@ interface Dialogs {
 
 type DialogVariant = keyof Dialogs;
 
-type Page = "messages" | "map" | "settings" | "channels" | "nodes";
+type Page =
+  | "messages"
+  | "map"
+  | "settings"
+  | "channels"
+  | "nodes"
+  | "telemetry";
 
 export type ConnectionId = number;
 export type ConnectionType = "http" | "bluetooth" | "serial";

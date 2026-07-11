@@ -25,6 +25,7 @@ import {
   MessageSquareIcon,
   SettingsIcon,
   UsersIcon,
+  ChartNoAxesCombinedIcon,
 } from "lucide-react";
 import type React from "react";
 import { useEffect, useState, useTransition } from "react";
@@ -121,16 +122,25 @@ export const Sidebar = ({ children }: SidebarProps) => {
       page: "messages",
       count: numUnread ? numUnread : undefined,
     },
-    { name: t("navigation.map"), icon: MapIcon, page: "map" },
     {
-      name: t("navigation.settings"),
-      icon: SettingsIcon,
-      page: "settings",
+      name: t("navigation.map"),
+      icon: MapIcon,
+      page: "map",
     },
     {
       name: `${t("navigation.nodes")} (${displayedNodeCount})`,
       icon: UsersIcon,
       page: "nodes",
+    },
+    {
+      name: "Telemetry",
+      icon: ChartNoAxesCombinedIcon,
+      page: "telemetry",
+    },
+    {
+      name: t("navigation.settings"),
+      icon: SettingsIcon,
+      page: "settings",
     },
   ];
 

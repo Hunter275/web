@@ -13,6 +13,8 @@
   },
   "type": "module",
   "scripts": {
+    "dev": "pnpm --filter meshtastic-web dev",
+    "build": "pnpm --filter meshtastic-web build",
     "preinstall": "npx only-allow pnpm",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",

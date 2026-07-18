@@ -4,6 +4,7 @@ import { Connections } from "@pages/Connections/index.tsx";
 import MapPage from "@pages/Map/index.tsx";
 import MessagesPage from "@pages/Messages.tsx";
 import NodesPage from "@pages/Nodes/index.tsx";
+import TelemetryPage from "@pages/Telemetry/index.tsx";
 import ConfigPage from "@pages/Settings/index.tsx";
 import {
   createRootRouteWithContext,
@@ -144,6 +145,12 @@ const nodesRoute = createRoute({
   component: NodesPage,
 });
 
+const telemetryRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: "/telemetry",
+  component: TelemetryPage,
+});
+
 const dialogWithParamsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: "/dialog/$dialogId",
@@ -166,6 +173,7 @@ export const routeTree = rootRoute.addChildren([
   nodesRoute,
   dialogWithParamsRoute,
   connectionsRoute,
+  telemetryRoute,
 ]);
 
 const router = createRouter({
